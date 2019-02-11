@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>calculator</title>
+	<style type="text/css">
+		#bottoms{
+			width:100%;
+			
+		}
+		#tops{
+			width:100%;
+			margin: 5px;
+		}
+		}
+		#Middles{
+			width:100%;
+			margin: 5px;
+		}
+		#lowest{
+			width:100%;
+			margin: 5px;
+		}		
+		.q{
+			width:15%;
+			color:black;
+			background:white ;
+			font-size:100px;
+			margin:10px;
+			border-radius: 25%;
+			padding-left: 10px;
+		}
+		body{
+			background-color:turquoise;
+		}
+		.w{
+			width: 60%;
+			height: 120px;
+            padding: 12px 12px;
+            margin: 30px;
+            box-sizing: border-box;
+            background:white;
+            color:black;
+            font-size: 40px;
+            border-radius: 0%;
+		}
+			
+		#point{
+			padding-right: 20px;
+			padding-left: 20px;
+		}
+		#minus{
+			padding-left: 20px;
+			padding-right: 20px
+
+		}
+		#multi{
+			padding-left: 20px;
+			padding-right: 20px;
+
+		}
+		#divide{
+			padding-left: 20px;
+			padding-right: 20px;
+
+		}
+	</style>
+</head>
+<body>
+
+<div class="w"><p>
+	<output id="data" font-size="500px"></output>
+</p>
+</div>
+
+
+<div id=tops>
+<label for="Seven">
+	<input type="button" class="q" id="Seven" value="7" onclick="val(7)">
+</label>
+<label for="Eight">
+	<input type="button" id="Eight" value="8" class="q" onclick="val(8)">
+</label>
+<label for="Nine">
+	<input type="button" id="Nine" value="9" class="q" onclick="val(9)">
+</label>
+<label for="add">
+	<input type="button" id="add" value="+" class="q" onclick="val('+')">
+</label>
+<label for="close">
+	<input type="button" id="close" value=")" class="q" onclick="val(')')">
+</label>
+</div>
+
+<div id=Middles>
+<label for="Four">
+	<input type="button" id="Four" value="4" class="q" onclick="val(4)">
+</label>
+<label for="Five">
+	<input type="button" id="Five" value="5" class="q" onclick="val(5)">
+</label>
+<label for="Six">
+	<input type="button" id="Six" value="6" class="q" onclick="val(6)">
+</label>
+<label for="minus">
+	<input type="button" id="minus" value="-" class="q" onclick="val('-')">
+</label>
+<label for="open">
+	<input type="button" id="open" value="(" class="q" onclick="val('(')">
+</label>
+</div>
+
+
+<div id=bottoms>
+<label for="One">
+	<input type="button" id="One" value="1" class="q" onclick="val(1)">
+</label>
+<label for="Two">
+	<input type="button" id="Two" value="2" class="q" onclick="val(2)">
+</label>
+<label for="Three">
+	<input type="button" id="Three" value="3" class="q" onclick="val(3)">
+</label>
+<label for="multi">
+	<input type="button" id="multi" value="*" class="q" onclick="val('*')">
+</label>
+<label for="A">
+	<input type="button" id="A" value="AC" class="q" onclick="val('A')">
+</label>
+</div>
+
+
+<div id=lowest>
+
+<label for="point">
+	<input type="button" id="point" value="." class="q" onclick="val('.')">
+</label>
+<label for="Zero">
+	<input type="button" id="Zero" value="0" class="q" onclick="val(0)">
+</label>
+<label for="equal">
+	<input type="button" id="equal" value="=" class="q" onclick="equate()">
+</label>
+<label for="divide">
+	<input type="button" id="divide" value="/" class="q" onclick="val('/')">
+</label>
+<label for="cancel">
+	<input type="button" id="cancel" value="C" class="q" onclick="val('C')">
+</label>
+</div>
+
+<script type="text/javascript">
+	var s="",fst=0;
+	function val(v){
+		if(v=='C'){
+			s=s.substring(0,s.length-1);
+		}
+		else if(v=='A'){
+			s="";fst=0;
+			document.getElementById("data").innerHTML=s;
+		}
+		else{
+			s+=v;
+	    }
+	document.getElementById("data").innerHTML=s;
+}
+function equate(){
+	s=s+'=';
+	var equ,w="",arr=[],i,ch;
+	for(i=0;i<s.length;i=i+1){
+		ch=s.charAt(i);
+		if(ch=='+'||ch=='-'||ch=='*'||ch=='/'||ch=='('||ch==')'){
+			arr.push(w,ch);
+			w="";
+		}
+		else if(ch=='='){
+			arr.push(w);
+			equ=eval(arr.join(""));
+		}
+		else{
+			w=w+ch;
+		}
+	}
+	document.getElementById("data").innerHTML=s+equ;
+	s=equ;
+}
+</script>
+
+</body>
+</html>
